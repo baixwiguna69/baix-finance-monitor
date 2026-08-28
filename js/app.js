@@ -144,5 +144,7 @@ function initializeQuickActions() {
         closeModal
     );
 
+}
+
 initializeQuickActions();
    

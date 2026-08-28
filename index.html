@@ -1,1 +1,574 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0f172a"
+    >
+
+    <meta
+        name="description"
+        content="BAIX Finance Monitor - Personal Financial Management"
+    >
+
+    <title>BAIX Finance Monitor</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <!-- ==================================================
+         APP CONTAINER
+         ================================================== -->
+
+    <div id="app">
+
+        <!-- HEADER -->
+        <header class="app-header">
+
+            <div class="brand">
+                <div class="brand-icon">
+                    💰
+                </div>
+
+                <div>
+                    <h1>BAIX Finance</h1>
+                    <span>Finance Monitor</span>
+                </div>
+            </div>
+
+            <button
+                id="settingsBtn"
+                class="icon-btn"
+                aria-label="Pengaturan"
+            >
+                ⚙️
+            </button>
+
+        </header>
+
+
+        <!-- ==================================================
+             MAIN CONTENT
+             ================================================== -->
+
+        <main id="mainContent">
+
+            <!-- DASHBOARD -->
+
+            <section
+                id="dashboardPage"
+                class="page active"
+            >
+
+                <div class="welcome">
+                    <p class="muted">Selamat datang 👋</p>
+                    <h2>Keuanganmu hari ini</h2>
+                </div>
+
+
+                <!-- TOTAL MONEY -->
+
+                <div class="balance-card">
+
+                    <span class="card-label">
+                        TOTAL UANG
+                    </span>
+
+                    <h2 id="totalBalance">
+                        Rp0
+                    </h2>
+
+                    <p id="balanceStatus">
+                        Belum ada rekening
+                    </p>
+
+                </div>
+
+
+                <!-- CASHFLOW -->
+
+                <div class="stats-grid">
+
+                    <div class="stat-card income">
+
+                        <span>↗ Pemasukan</span>
+
+                        <strong id="monthlyIncome">
+                            Rp0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-card expense">
+
+                        <span>↘ Pengeluaran</span>
+
+                        <strong id="monthlyExpense">
+                            Rp0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-card saving">
+
+                        <span>🏦 Ditabung</span>
+
+                        <strong id="monthlySaving">
+                            Rp0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat-card safe">
+
+                        <span>🛡️ Safe to Spend</span>
+
+                        <strong id="safeToSpend">
+                            Rp0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACCOUNTS -->
+
+                <section class="section">
+
+                    <div class="section-header">
+
+                        <h3>Rekening</h3>
+
+                        <button
+                            id="addAccountBtn"
+                            class="text-btn"
+                        >
+                            + Tambah
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="accountsList"
+                        class="accounts-list"
+                    >
+
+                        <div class="empty-state">
+
+                            <div class="empty-icon">
+                                🏦
+                            </div>
+
+                            <h3>Belum ada rekening</h3>
+
+                            <p>
+                                Tambahkan bank, cash,
+                                atau e-wallet kamu.
+                            </p>
+
+                            <button
+                                id="emptyAddAccountBtn"
+                                class="primary-btn"
+                            >
+                                + Tambah Rekening
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- SAVINGS -->
+
+                <section class="section">
+
+                    <div class="section-header">
+
+                        <h3>Target Tabungan</h3>
+
+                        <button
+                            id="addGoalBtn"
+                            class="text-btn"
+                        >
+                            + Tambah
+                        </button>
+
+                    </div>
+
+
+                    <div id="goalsList">
+
+                        <div class="empty-state small">
+
+                            <div class="empty-icon">
+                                🎯
+                            </div>
+
+                            <p>
+                                Belum ada target tabungan.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- RECENT TRANSACTIONS -->
+
+                <section class="section">
+
+                    <div class="section-header">
+
+                        <h3>Transaksi Terbaru</h3>
+
+                        <button
+                            id="viewTransactionsBtn"
+                            class="text-btn"
+                        >
+                            Lihat Semua
+                        </button>
+
+                    </div>
+
+
+                    <div id="recentTransactions">
+
+                        <div class="empty-state small">
+
+                            <div class="empty-icon">
+                                🧾
+                            </div>
+
+                            <p>
+                                Belum ada transaksi.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- INSIGHT -->
+
+                <section class="section">
+
+                    <div class="section-header">
+                        <h3>🧠 Financial Insight</h3>
+                    </div>
+
+                    <div
+                        id="financialInsight"
+                        class="insight-card"
+                    >
+
+                        <strong>
+                            Belum cukup data
+                        </strong>
+
+                        <p>
+                            Tambahkan rekening dan
+                            transaksi untuk mendapatkan
+                            analisis keuangan otomatis.
+                        </p>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+            <!-- ==================================================
+                 TRANSACTIONS PAGE
+                 ================================================== -->
+
+            <section
+                id="transactionsPage"
+                class="page"
+            >
+
+                <div class="page-title">
+
+                    <h2>Transaksi</h2>
+
+                    <p>
+                        Semua pemasukan,
+                        pengeluaran, dan transfer.
+                    </p>
+
+                </div>
+
+                <div
+                    id="transactionsList"
+                    class="transactions-list"
+                ></div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 ACCOUNTS PAGE
+                 ================================================== -->
+
+            <section
+                id="accountsPage"
+                class="page"
+            >
+
+                <div class="page-title">
+
+                    <h2>Rekening</h2>
+
+                    <p>
+                        Kelola semua tempat uangmu.
+                    </p>
+
+                </div>
+
+                <div
+                    id="allAccountsList"
+                    class="accounts-list"
+                ></div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 REPORT PAGE
+                 ================================================== -->
+
+            <section
+                id="reportsPage"
+                class="page"
+            >
+
+                <div class="page-title">
+
+                    <h2>Laporan</h2>
+
+                    <p>
+                        Analisis kondisi keuanganmu.
+                    </p>
+
+                </div>
+
+                <div
+                    id="reportContent"
+                    class="report-content"
+                ></div>
+
+            </section>
+
+        </main>
+
+
+        <!-- ==================================================
+             QUICK ADD BUTTON
+             ================================================== -->
+
+        <button
+            id="quickAddBtn"
+            class="quick-add-btn"
+            aria-label="Tambah transaksi"
+        >
+            +
+        </button>
+
+
+        <!-- ==================================================
+             BOTTOM NAVIGATION
+             ================================================== -->
+
+        <nav class="bottom-nav">
+
+            <button
+                class="nav-item active"
+                data-page="dashboardPage"
+            >
+                <span>🏠</span>
+                <small>Beranda</small>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-page="transactionsPage"
+            >
+                <span>💸</span>
+                <small>Transaksi</small>
+            </button>
+
+
+            <button
+                class="nav-item add-nav"
+                id="bottomAddBtn"
+            >
+                <span>＋</span>
+                <small>Tambah</small>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-page="accountsPage"
+            >
+                <span>🏦</span>
+                <small>Rekening</small>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-page="reportsPage"
+            >
+                <span>📊</span>
+                <small>Laporan</small>
+            </button>
+
+        </nav>
+
+    </div>
+
+
+    <!-- ==================================================
+         QUICK ACTION MODAL
+         ================================================== -->
+
+    <div
+        id="quickActionModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-overlay"></div>
+
+        <div class="modal-sheet">
+
+            <div class="modal-header">
+
+                <h2>Tambah</h2>
+
+                <button
+                    id="closeQuickAction"
+                    class="icon-btn"
+                >
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div class="quick-actions">
+
+                <button
+                    class="quick-action income-action"
+                    data-action="income"
+                >
+                    <span>↗</span>
+                    <strong>Pemasukan</strong>
+                    <small>Uang masuk</small>
+                </button>
+
+
+                <button
+                    class="quick-action expense-action"
+                    data-action="expense"
+                >
+                    <span>↘</span>
+                    <strong>Pengeluaran</strong>
+                    <small>Uang keluar</small>
+                </button>
+
+
+                <button
+                    class="quick-action transfer-action"
+                    data-action="transfer"
+                >
+                    <span>⇄</span>
+                    <strong>Transfer</strong>
+                    <small>Pindah rekening</small>
+                </button>
+
+
+                <button
+                    class="quick-action saving-action"
+                    data-action="saving"
+                >
+                    <span>🎯</span>
+                    <strong>Tabungan</strong>
+                    <small>Alokasi ke target</small>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+         ================================================== -->
+
+    <script src="js/db.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/account.js"></script>
+    <script src="js/transaction.js"></script>
+    <script src="js/savings.js"></script>
+    <script src="js/budget.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/app.js"></script>
+
+
+    <!-- SERVICE WORKER -->
+
+    <script>
+        if ("serviceWorker" in navigator) {
+
+            window.addEventListener("load", () => {
+
+                navigator.serviceWorker
+                    .register("service-worker.js")
+                    .then(() => {
+                        console.log(
+                            "BAIX Finance: Service Worker aktif."
+                        );
+                    })
+                    .catch((error) => {
+                        console.error(
+                            "Service Worker gagal:",
+                            error
+                        );
+                    });
+
+            });
+
+        }
+    </script>
+
+</body>
+</html>

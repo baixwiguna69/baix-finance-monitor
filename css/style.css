@@ -593,3 +593,129 @@ main {
 
     margin-top: 10px;
 }
+
+/* =========================================================
+   TRANSACTION FORM
+   ========================================================= */
+
+.transaction-form {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.transaction-form label {
+    margin-top: 5px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    color: var(--muted);
+}
+
+.transaction-form input,
+.transaction-form select,
+.transaction-form textarea {
+    width: 100%;
+
+    padding: 13px;
+
+    background: var(--surface-2);
+
+    color: var(--text);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    outline: none;
+}
+
+.transaction-form input:focus,
+.transaction-form select:focus,
+.transaction-form textarea:focus {
+    border-color: var(--accent);
+}
+
+.transaction-form textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+
+/* =========================================================
+   TRANSACTION CARDS
+   ========================================================= */
+
+.transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.transaction-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+}
+
+.transaction-icon {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--surface-2);
+
+    border-radius: 12px;
+
+    font-size: 20px;
+}
+
+.transaction-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.transaction-info strong {
+    display: block;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.transaction-info small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+.transaction-amount {
+    text-align: right;
+}
+
+.transaction-amount strong {
+    font-size: 13px;
+}
+
+.transaction-amount .positive {
+    color: var(--accent);
+}
+
+.transaction-amount .negative {
+    color: var(--danger);
+}

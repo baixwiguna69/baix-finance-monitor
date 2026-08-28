@@ -146,31 +146,4 @@ function initializeQuickActions() {
 
 
     // Action buttons
-    const actions =
-        document.querySelectorAll(
-            ".quick-action"
-        );
-
-
-    actions.forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                const action =
-                    button.dataset.action;
-
-                console.log(
-                    "Quick action:",
-                    action
-                );
-
-                closeModal();
-
-            }
-        );
-
-    });
-
-}
+    initializeQuickActions()

@@ -1,6 +1,6 @@
 /* =========================================================
    BAIX FINANCE MONITOR
-   Application Bootstrap
+   Application Controller
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -9,21 +9,168 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
 
+        // Initialize database
         const status = await getDatabaseStatus();
 
-        console.log("Database berhasil dibuka.");
+        console.log("Database:", status.name);
+        console.log("Version:", status.version);
+        console.log("Stores:", status.stores);
 
-        console.table({
-            Database: status.name,
-            Version: status.version,
-            Stores: status.stores.join(", ")
-        });
+        initializeNavigation();
+        initializeQuickActions();
+
+        console.log(
+            "BAIX Finance Monitor berhasil dijalankan."
+        );
 
     } catch (error) {
 
         console.error(
-            "BAIX Finance Monitor gagal memulai:",
+            "BAIX Finance Monitor gagal dijalankan:",
             error
         );
+
     }
+
 });
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+function initializeNavigation() {
+
+    const navItems =
+        document.querySelectorAll(".nav-item[data-page]");
+
+    const pages =
+        document.querySelectorAll(".page");
+
+
+    navItems.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const targetPage =
+                button.dataset.page;
+
+
+            // Hide all pages
+            pages.forEach(page => {
+                page.classList.remove("active");
+            });
+
+
+            // Show selected page
+            const page =
+                document.getElementById(targetPage);
+
+            if (page) {
+                page.classList.add("active");
+            }
+
+
+            // Update navigation state
+            navItems.forEach(item => {
+                item.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+        });
+
+    });
+
+}
+
+
+/* =========================================================
+   QUICK ACTION
+   ========================================================= */
+
+function initializeQuickActions() {
+
+    const modal =
+        document.getElementById("quickActionModal");
+
+    const quickAdd =
+        document.getElementById("quickAddBtn");
+
+    const bottomAdd =
+        document.getElementById("bottomAddBtn");
+
+    const closeButton =
+        document.getElementById("closeQuickAction");
+
+    const overlay =
+        modal?.querySelector(".modal-overlay");
+
+
+    function openModal() {
+
+        modal?.classList.remove("hidden");
+
+    }
+
+
+    function closeModal() {
+
+        modal?.classList.add("hidden");
+
+    }
+
+
+    quickAdd?.addEventListener(
+        "click",
+        openModal
+    );
+
+
+    bottomAdd?.addEventListener(
+        "click",
+        openModal
+    );
+
+
+    closeButton?.addEventListener(
+        "click",
+        closeModal
+    );
+
+
+    overlay?.addEventListener(
+        "click",
+        closeModal
+    );
+
+
+    // Action buttons
+    const actions =
+        document.querySelectorAll(
+            ".quick-action"
+        );
+
+
+    actions.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const action =
+                    button.dataset.action;
+
+                console.log(
+                    "Quick action:",
+                    action
+                );
+
+                closeModal();
+
+            }
+        );
+
+    });
+
+}

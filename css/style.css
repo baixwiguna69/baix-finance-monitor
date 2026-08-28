@@ -449,3 +449,147 @@ main {
 .quick-action small {
     color: var(--muted);
 }
+
+/* =========================================================
+   ACCOUNT CARDS
+   ========================================================= */
+
+.accounts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.account-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 15px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+}
+
+.account-icon {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--surface-2);
+
+    border-radius: 13px;
+
+    font-size: 21px;
+}
+
+.account-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.account-info strong {
+    display: block;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.account-info small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.account-balance {
+    text-align: right;
+}
+
+.account-balance strong {
+    display: block;
+    font-size: 14px;
+}
+
+.account-menu-btn {
+    margin-top: 3px;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   ACCOUNT FORM
+   ========================================================= */
+
+.account-form {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.account-form label {
+    margin-top: 5px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    color: var(--muted);
+}
+
+.account-form input,
+.account-form select,
+.account-form textarea {
+    width: 100%;
+
+    padding: 13px;
+
+    background: var(--surface-2);
+
+    color: var(--text);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    outline: none;
+}
+
+.account-form input:focus,
+.account-form select:focus,
+.account-form textarea:focus {
+    border-color: var(--accent);
+}
+
+.account-form textarea {
+    min-height: 80px;
+
+    resize: vertical;
+}
+
+.form-help {
+    color: var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.4;
+}
+
+.form-submit {
+    width: 100%;
+
+    margin-top: 10px;
+}

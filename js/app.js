@@ -143,3 +143,6 @@ function initializeQuickActions() {
         "click",
         closeModal
     );
+
+initializeQuickActions();
+   
